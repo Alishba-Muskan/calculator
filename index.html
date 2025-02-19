@@ -96,6 +96,43 @@
             background: #302f2e;
         }
 
+
+
+
+
+
+        .search-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 300px;
+    width: 100%;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px 30px 10px 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-bottom: 1px solid #535353;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-container input:focus {
+    border-bottom: 1px solid #a3a3a3;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    color: white;
+    font-size: 16px;
+}
+
     </style>
 </head>
 <body>
@@ -124,6 +161,16 @@
             <button class="btn">0</button>
         </div>
     </div>
+
+
+
+
+
+
+    <div class="search-container">
+        <input style="display: block;" type="text" id="a" placeholder="Search products... " value="">
+        <i class="fas fa-search search-icon"></i>
+      </div>
 <script src="script.js"></script>
 </body>
 </html>
