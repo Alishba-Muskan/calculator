@@ -161,9 +161,9 @@ let products = [
 inputvalue.addEventListener("keyup", (e) => {
     let filteredproduct = products.filter((value) => {
         return (
-            (value.name.toLowerCase().includes(e.target.value.toLowerCase()) || 
-        value.category.toLowerCase().includes(e.target.value.toLowerCase()))
-        && value.price >= 500
+            value.name.toLowerCase().includes(e.target.value.toLowerCase()) || 
+        value.category.toLowerCase().includes(e.target.value.toLowerCase())
+        && value.price >= 100
         )        
     })
     console.clear();
