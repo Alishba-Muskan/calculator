@@ -144,30 +144,35 @@
     // })
 
 
-    let inputvalue = document.getElementById("a")
-let products = [
-        {name: "laptop", price: 1500, category: "electronics" },
-        { name: "phone", price: 5000, category: "electronics" },
-        { name: "headphones", price: 200, category: "accessories" },
-        { name: "game", price: 500, category: "gaming" },
-        { name: "watch", price: 500, category: "accessories" },
-        { name: "table", price: 800, category: "furniture" },
-        { name: "chair", price: 1000, category: "furniture" },
-        { name: "cloth", price: 1500, category: "fashion" },
-        { name: "shoes", price: 1200, category: "fashion" },
-        { name: "novel", price: 100, category: "books" }
-]
+//     let inputvalue = document.getElementById("a")
+// let products = [
+//         {name: "laptop", price: 1500, category: "electronics" },
+//         { name: "phone", price: 5000, category: "electronics" },
+//         { name: "headphones", price: 200, category: "accessories" },
+//         { name: "game", price: 500, category: "gaming" },
+//         { name: "watch", price: 500, category: "accessories" },
+//         { name: "table", price: 800, category: "furniture" },
+//         { name: "chair", price: 1000, category: "furniture" },
+//         { name: "cloth", price: 1500, category: "fashion" },
+//         { name: "shoes", price: 1200, category: "fashion" },
+//         { name: "novel", price: 100, category: "books" }
+// ]
 
 
 
-inputvalue.addEventListener("keyup", (e) => {
-    let filteredproduct = products.filter((value) => {
-        return (
-            value.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
-            value.category.toLowerCase().includes(e.target.value.toLowerCase())
-            && value.price >= 100
-        )
-    })
-    console.clear();
-    console.log(filteredproduct);
-})
+// inputvalue.addEventListener("keyup", (e) => {
+//     let filteredproduct = products.filter((value) => {
+//         return (
+//             value.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+//             value.category.toLowerCase().includes(e.target.value.toLowerCase())
+//             && value.price >= 100
+//         )
+//     })
+//     console.clear();
+//     console.log(filteredproduct);
+
+//     if(filteredproduct.length === 0){
+//         alert('No Record Found');
+//     }
+// })
+
