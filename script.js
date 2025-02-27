@@ -176,3 +176,58 @@
 //     }
 // })
 
+
+
+
+
+
+
+
+
+
+
+        // var product = document.getElementById("products");
+        // var searchInput = document.getElementById("searching");
+        // let filtering;
+
+        // fetch("https://fakestoreapi.com/products")
+        //     .then((data) => {
+        //         return data.json();
+        //     })
+        //     .then((res) => {
+        //         filtering = res;
+        //         displayProducts(filtering);
+        //     });
+
+        // function displayProducts(products) {
+        //     product.innerHTML = "";
+
+        //     for (var a = 0; a < products.length; a++) {
+        //         let shorttitle = products[a].title.slice(0, 36);
+        //         let shortDescription = products[a].description.substring(0, 45);
+        //         product.innerHTML += `
+        //     <div>
+        //         <div class="product-card">
+        //             <div class="product-image">
+        //                 <img src="${products[a].image}" alt="${products[a].title}">
+        //             </div>
+        //             <div class="product-details">
+        //                 <div class="product-title">${shorttitle}.....</div>
+        //                 <div class="product-description">${shortDescription}.....<a href="#">Read More</a></div>
+        //                 <div class="product-price">PRICE : $${products[a].price}</div>
+        //                     <a href=""><button>Buy Now</button></a>
+        //             </div>
+        //         </div>
+        //     </div>`;
+        //     }
+        // }
+        // searchInput.addEventListener("input", (e) => {
+        //     let searchValue = e.target.value;
+
+        //     let filteredData = filtering.filter((val) => {
+        //         return val.title.toLowerCase().includes(searchValue.toLowerCase());
+        //     });
+        //     displayProducts(filteredData);
+        // });
+
+
