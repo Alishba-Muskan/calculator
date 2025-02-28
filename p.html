@@ -137,13 +137,13 @@
         border: none;
         background-color: black;
         color: white;
-        border-bottom: 1px solid #535353;
-        outline: none;
+        border: 1px solid goldenrod;
         font-size: 16px;
+        
     }
 
     .search-container input:focus {
-        border-bottom: 1px solid #a3a3a3;
+        border: 1px solid goldenrod;
     }
 
     .search-icon {
@@ -178,10 +178,7 @@
             })
             .then((res) => {
                 filtering = res;
-                
                 for (var a = 0; a < res.length; a++) {
-                    let shorttitle = res[a].title.slice(0, 36);
-                    let shortDescription = res[a].description.substring(0, 45);
                     product.innerHTML += `
                 <div>
                     <div class="product-card">
@@ -189,8 +186,8 @@
                             <img src="${res[a].image}" alt="${res[a].title}">
                         </div>
                         <div class="product-details">
-                            <div class="product-title">${shorttitle}.....</div>
-                            <div class="product-description">${shortDescription}.....<a href="#">Read More</a></div>
+                            <div class="product-title">${res[a].title.substring(0, 36)}.....</div>
+                            <div class="product-description">${res[a].description.substring(0, 45)}.....<a href="#">Read More</a></div>
                             <div class="product-price">PRICE : $${res[a].price}</div>
                             <a href=""><button>Buy Now</button></a>
                         </div>
@@ -209,5 +206,4 @@
         })
     </script>
 </body>
-
 </html>

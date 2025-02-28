@@ -186,8 +186,8 @@
 
 
 
-        // var product = document.getElementById("products");
-        // var searchInput = document.getElementById("searching");
+        var product = document.getElementById("products");
+        var searchInput = document.getElementById("searching");
         // let filtering;
 
         // fetch("https://fakestoreapi.com/products")
@@ -229,5 +229,3 @@
         //     });
         //     displayProducts(filteredData);
         // });
-
-
