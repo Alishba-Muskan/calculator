@@ -186,8 +186,8 @@
 
 
 
-        var product = document.getElementById("products");
-        var searchInput = document.getElementById("searching");
+        // var product = document.getElementById("products");
+        // var searchInput = document.getElementById("searching");
         // let filtering;
 
         // fetch("https://fakestoreapi.com/products")
@@ -221,7 +221,7 @@
         //     </div>`;
         //     }
         // }
-        // searchInput.addEventListener("input", (e) => {
+        // searchInput.addEventListener("input",(e) => {
         //     let searchValue = e.target.value;
 
         //     let filteredData = filtering.filter((val) => {
