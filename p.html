@@ -84,6 +84,13 @@
         font-weight: bold;
     }
 
+
+    .btn-group {
+        display: flex;
+        margin-top: 2%;
+        margin-left: 5%;
+    }
+
     button {
         height: 40px;
         width: 120px;
@@ -94,11 +101,12 @@
         font-weight: bold;
         border: 1px solid goldenrod;
         transition: all 0.3s ease;
+        margin-left: -14%;
     }
 
     button:hover {
-        transform: scale(1.02);
-        box-shadow: 0 8px 40px rgb(253, 189, 189);
+        transform: scale(1.08);
+        box-shadow: 0 8px 40px rgb(249, 173, 173);
         transition: all 0.3s ease-in-out;
     }
 
@@ -139,7 +147,7 @@
         color: white;
         border: 1px solid goldenrod;
         font-size: 16px;
-        
+
     }
 
     .search-container input:focus {
@@ -154,9 +162,7 @@
     }
 </style>
 </head>
-
 <body>
-
     <div class="search-container">
         <input style="display: block;" type="text" id="searching" placeholder="Search products... " value="">
         <i class="fas fa-search search-icon"></i>
@@ -178,32 +184,43 @@
             })
             .then((res) => {
                 filtering = res;
-                for (var a = 0; a < res.length; a++) {
-                    product.innerHTML += `
-                <div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="${res[a].image}" alt="${res[a].title}">
-                        </div>
-                        <div class="product-details">
-                            <div class="product-title">${res[a].title.substring(0, 36)}.....</div>
-                            <div class="product-description">${res[a].description.substring(0, 45)}.....<a href="#">Read More</a></div>
-                            <div class="product-price">PRICE : $${res[a].price}</div>
-                            <a href=""><button>Buy Now</button></a>
-                        </div>
-                    </div>
-                </div>`;
-                }
+                displayproduct(filtering)
             });
+
+        function displayproduct(res) {
+            product.innerHTML = "";
+            for (var a = 0; a < res.length; a++) {
+                product.innerHTML += `
+                   <div>
+                       <div class="product-card">
+                           <div class="product-image">
+                               <img src="${res[a].image}" alt="${res[a].title}">
+                           </div>
+                           <div class="product-details">
+                               <div class="product-title">${res[a].title.substring(0, 16)}.....</div>
+                               <div class="product-description">${res[a].description.substring(0, 45)}.....<a href="#">Read More</a></div>
+                               <div class="product-price">PRICE : $${res[a].price}</div>
+                               <div class="btn-group">
+                                   <a href="product-details.html?id=${res[a].id}"><button>View Details</button></a>
+                                   <a href=""><button>Add To Cart</button></a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>`;
+
+            }
+        }
 
         searchInput.addEventListener(("input"), (e) => {
             let searchvalue = e.target.value;
 
             let filterdata = filtering.filter((val) => {
-                return val.title.toLowerCase().includes(searchvalue.toLowerCase());
+                return val.title.toLowerCase().includes(searchvalue.toLowerCase()) ||
+                    val.description.toLowerCase().includes(searchvalue.toLowerCase());
             })
-            console.log(filterdata);
+            displayproduct(filterdata);
         })
     </script>
 </body>
+
 </html>
