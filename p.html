@@ -9,7 +9,7 @@
 </head>
 <style>
     .container {
-        margin-top: 5%;
+        margin-top: 2%;
         padding: 0 30px;
     }
 
@@ -49,7 +49,7 @@
 
     .product-image img {
         width: 100%;
-        height: 90%;
+        height: 250px;
         transition: transform 0.5s ease, filter 0.3s ease;
     }
 
@@ -61,7 +61,7 @@
     .product-details {
         padding: 20px;
         text-align: center;
-        margin-top: -20%;
+        margin-top: -28%;
     }
 
     .product-title {
@@ -74,7 +74,7 @@
     .product-description {
         font-size: 15px;
         color: #1d1d1d;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         line-height: 1.5;
     }
 
@@ -198,7 +198,7 @@
                            </div>
                            <div class="product-details">
                                <div class="product-title">${res[a].title.substring(0, 16)}.....</div>
-                               <div class="product-description">${res[a].description.substring(0, 45)}.....<a href="#">Read More</a></div>
+                               <div class="product-description">${res[a].description.substring(0, 45)}.....<a href="product-details.html?id=${res[a].id}">Read More</a></div>
                                <div class="product-price">PRICE : $${res[a].price}</div>
                                <div class="btn-group">
                                    <a href="product-details.html?id=${res[a].id}"><button>View Details</button></a>
