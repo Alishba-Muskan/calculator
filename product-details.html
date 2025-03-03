@@ -7,135 +7,101 @@
     <title>Product Details</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8cfcf;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background-color: #f9f9f9;
+            height: 100vh;
+            padding: 20px;
+            background: linear-gradient(180deg, rgb(249, 173, 173), rgb(249, 173, 173), #fd4dae9c);
         }
 
-        .product-details-container {
-            width: 90%;
-            max-width: 1200px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 15px 35px #fd4dae9c;
+        .card {
             display: flex;
-            padding: 40px;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .product-details-container:hover {
-            box-shadow: 0 25px 50px rgb(249, 173, 173);
-        }
-
-        .product-image {
-            flex: 1;
-            max-width: 400px;
-            margin-right: 30px;
-            border-radius: 12px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.607);
             overflow: hidden;
-            box-shadow: 0 8px 20px rgb(249, 173, 173);
+            max-width: 800px;
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .product-image:hover{
-            box-shadow: 0 15px 35px #fd4dae9c;
-
-        }
-        .product-image img {
-            width: 80%;
-            height: auto;
-            transition: transform 0.3s ease;
-            margin-left: 10%;
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px #fd4daea8;
+            transition: all 0.3s ease-in-out;
         }
 
-        .product-image:hover img {
-            transform: scale(1.05);
+        .card img {
+            padding: 5%;
+            width: 40%;
         }
 
-        .product-details {
-            flex: 1;
+        .card-content {
+            padding: 30px;
+            width: 50%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
         }
 
-
-        .title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #333;
-            line-height: 1.3;
-            margin-bottom: 5px;
+        .card-content h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
         }
 
-        .description {
-            font-size: 18px;
-            color: #777;
-            line-height: 1.7;
-            margin-bottom: 5px;
-            text-align: justify;
+        .card-content p {
+            font-size: 16px;
+            color: #484646;
+            margin-bottom: 20px;
         }
 
         .price {
             font-size: 28px;
-            font-weight: 700;
-            color: #fd4dae;
-            margin-bottom: 0px;
+            font-weight: bold;
+            margin-bottom: 15px;
+
         }
 
-        .buttons {
-            display: flex;
-            gap: 25px;
-        }
-
-        .buttons button {
+        button {
             height: 50px;
-            width: 180px;
+            width: 250px;
             background-color: #fd4dae;
             color: white;
-            font-size: 16px;
-            font-weight: 500;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid goldenrod;
             transition: all 0.3s ease;
         }
 
-        .buttons button:hover {
-            background-color: #e03f9f;
-            transform: translateY(-3px);
+        button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 40px rgb(249, 173, 173);
+            transition: all 0.3s ease-in-out;
         }
 
-
-        @media screen and (max-width: 768px) {
-            .product-details-container {
+        @media (max-width: 768px) {
+            .card {
                 flex-direction: column;
+                max-width: 90%;
+            }
+
+            .card img {
+                width: 100%;
+            }
+
+            .card-content {
+                width: 100%;
+                text-align: center;
                 padding: 20px;
-            }
-
-            .product-image {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-
-            .title {
-                font-size: 28px;
-                text-align: center;
-            }
-
-            .price {
-                font-size: 24px;
-                text-align: center;
-            }
-
-            .buttons {
-                flex-direction: column;
-                gap: 15px;
-                align-items: center;
             }
         }
     </style>
@@ -143,34 +109,31 @@
 
 <body>
 
-<div id="products"></div>
+    <div id="products"></div>
 
-<script>
-    const productId = new URLSearchParams(window.location.search).get('id');
-    const product = document.getElementById('products');
+    <script>
+        const productId = new URLSearchParams(window.location.search).get('id');
+        const product = document.getElementById('products');
 
 
-    fetch(`https://fakestoreapi.com/products/${productId}`)
-        .then(res => res.json())
-        .then((res) => {           
-           product.innerHTML = `
-                <div class="product-details-container">
-                    <div class="product-image">
-                        <img src="${res.image}" alt="Product Image">
-                    </div>
-                    <div class="product-details">
-                        <div class="title">${res.title}</div>
-                        <div class="description">${res.description}</div>
-                        <div class="price">$${res.price}</div>
-                        <div class="buttons">
-                            <button>Add To Cart</button>
-                            <a href="./p.html"><button>Back to Products</button></a>
-                        </div>
+        fetch(`https://fakestoreapi.com/products/${productId}`)
+            .then(res => res.json())
+            .then((res) => {
+                product.innerHTML = `
+
+                <div class="card">
+                    <img src="${res.image}" alt="T-Shirt">
+                    <div class="card-content">
+                        <h2>${res.title} </h2>
+                        <p>${res.description}</p>
+                        <p class="price">$${res.price}</p>
+                        <button >ADD TO CART</button>
                     </div>
                 </div>
             `;
-        })
-</script>
+            })
+    </script>
 
 </body>
+
 </html>
