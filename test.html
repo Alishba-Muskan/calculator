@@ -7,8 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 </head>
+
 <style>
-    body {
+   body {
         background-color: rgba(249, 173, 173, 0.187);
     }
 
@@ -160,7 +161,7 @@
         font-size: 18px;
     }
 
-
+    /* Cart icon style */
     .cart-container {
         position: fixed;
         top: 32px;
@@ -179,22 +180,20 @@
     .cart-count {
         background-color: #fd4dae;
         color: white;
-        margin-top: -50%;
+        margin-top: -48%;
         margin-left: -24%;
         padding: 5px 10px;
         border-radius: 50%;
     }
+
 </style>
-</head>
 
 <body>
-
-
+    <!-- Cart Icon -->
     <div class="cart-container" id="cart-icon">
         <i class="fas fa-shopping-cart cart-icon"></i>
         <div class="cart-count" id="cart-count">0</div>
     </div>
-
 
     <div class="search-container">
         <input style="display: block;" type="text" id="searching" placeholder="Search products... " value="">
@@ -205,57 +204,55 @@
         <div class="row" id="products">
         </div>
     </div>
+
     <script>
-        var product = document.getElementById("products");
-        var searchInput = document.getElementById("searching");
-        var cartCount = document.getElementById("cart-count");
-        var cartIcon = document.getElementById("cart-icon");
-
-        let filtering = [];
-
-        fetch("https://fakestoreapi.com/products")
-            .then((data) => {
-                return data.json();
-            })
-            .then((res) => {
-                filtering = res;
-                displayproduct(filtering)
-            });
-
-        function displayproduct(res) {
-            product.innerHTML = "";
-            for (var a = 0; a < res.length; a++) {
-                product.innerHTML += `
-                   <div>
-                       <div class="product-card">
-                           <div class="product-image">
-                               <img src="${res[a].image}" alt="${res[a].title}">
-                           </div>
-                           <div class="product-details">
-                               <div class="product-title">${res[a].title.substring(0, 16)}.....</div>
-                               <div class="product-description">${res[a].description.substring(0, 45)}.....<a href="product-details.html?id=${res[a].id}">Read More</a></div>
-                               <div class="product-price">PRICE : $${res[a].price}</div>
-                               <div class="btn-group">
-                                   <a href="product-details.html?id=${res[a].id}"><button>View Details</button></a>
-                                   <a href=""><button>Add To Cart</button></a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>`;
-
-            }
+        const product = document.getElementById("products");
+        const searchInput = document.getElementById("searching");
+        const cartCount = document.getElementById("cart-count");
+        let cart = JSON.parse(localStorage.getItem("cart"));
+    
+        function updateCartCount() {
+            cartCount.innerText = cart.length;
         }
-
-        searchInput.addEventListener(("input"), (e) => {
-            let searchvalue = e.target.value;
-
-            let filterdata = filtering.filter((val) => {
-                return val.title.toLowerCase().includes(searchvalue.toLowerCase()) ||
-                    val.description.toLowerCase().includes(searchvalue.toLowerCase());
-            })
-            displayproduct(filterdata);
-        })
+    
+        fetch("https://fakestoreapi.com/products")
+            .then(response => response.json())
+            .then(data => displayProducts(data));
+    
+        function displayProducts(products) {
+            product.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="product-image"><img src="${p.image}" alt="${p.title}"></div>
+                    <div class="product-details">
+                        <div class="product-title">${p.title.substring(0, 16)}...</div>
+                        <div class="product-description">${p.description.substring(0, 45)}...<a href="product-details.html?id=${p.id}">Read More</a></div>
+                        <div class="product-price">PRICE: $${p.price}</div>
+                        <button onclick="addToCart(${p.id}, '${p.title}', ${p.price}, '${p.image}')">Add To Cart</button>
+                    </div>
+                </div>`).join('');
+        }
+    
+        searchInput.addEventListener("input", (e) => {
+            const query = e.target.value.toLowerCase();
+            fetch("https://fakestoreapi.com/products")
+                .then(response => response.json())
+                .then(data => {
+                    const filtered = data.filter(p => p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query));
+                    displayProducts(filtered);
+                });
+        });
+    
+        // Add product to cart
+        function addToCart(id, title, price, image) {
+            cart.push({ id, title, price, image });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+        }
+    
+        // Initial cart count update
+        updateCartCount();
     </script>
+    
 </body>
 
 </html>
